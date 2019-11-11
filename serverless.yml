@@ -1,0 +1,14 @@
+service: train_delay_notify
+provider:
+  name: aws
+  stage: production
+  region: ap-northeast-1
+  runtime: ruby2.5
+  stackName: train-delay-notify
+
+functions:
+  handler:
+    handler: handler.lambda_handler
+    events:
+      - schedule: cron(30 22 * * ? *)
+      - schedule: cron(0 23 * * ? *)
